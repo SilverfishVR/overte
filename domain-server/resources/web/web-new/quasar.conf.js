@@ -214,7 +214,7 @@ module.exports = configure(function (ctx) {
             builder: {
                 // https://www.electron.build/configuration/configuration
 
-                appId: "vircadia-domain-dashboard"
+                appId: "overte-domain-dashboard"
             },
 
             // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain

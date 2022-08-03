@@ -1,4 +1,4 @@
-# Overte Domain Dashboard (vircadia-domain-dashboard)
+# Overte Domain Dashboard (Overte-domain-dashboard)
 
 The Domain dashboard for Overte virtual worlds.
 

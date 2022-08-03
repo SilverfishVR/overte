@@ -2,7 +2,7 @@
 
 if [ "$VIRCADIA" = "" ]; then
 	VIRCADIA=`realpath ../..`
-	QT5_LIBS=`realpath ../../../vircadia-files/qt/qt5-install/lib`
+	QT5_LIBS=`realpath ../../../overte-files/qt/qt5-install/lib`
 fi
 
 GITDATE=`git -C $VIRCADIA/source log -n 1 --format=raw | grep author | cut -d">" -f 2 | cut -d" " -f 2 | xargs -I {} date -d @{} +"%Y%m%d"`
@@ -11,7 +11,7 @@ VERSION=$DEBVERSION-$GITDATE-$GITCOMMIT
 
 sudo apt-get install chrpath binutils dh-make
 
-DEB_BUILD_ROOT=temp-make-deb/vircadia-server_$VERSION-0ubuntu1
+DEB_BUILD_ROOT=temp-make-deb/overte-server_$VERSION-0ubuntu1
 rm -r temp-make-deb
 mkdir -p $DEB_BUILD_ROOT
 
@@ -46,16 +46,16 @@ strip --strip-all $DEB_BUILD_ROOT/plugins/*/*.so
 
 #begin the debian package construction
 cd $DEB_BUILD_ROOT
-dh_make -p vircadia-server_$VERSION-0ubuntu1 -c apache -s --createorig -y
+dh_make -p overte-server_$VERSION-0ubuntu1 -c apache -s --createorig -y
 
-cp $VIRCADIA/source/pkg-scripts/vircadia-assignment-client.service debian
-cp $VIRCADIA/source/pkg-scripts/vircadia-assignment-client@.service debian
-cp $VIRCADIA/source/pkg-scripts/vircadia-domain-server.service debian
-cp $VIRCADIA/source/pkg-scripts/vircadia-domain-server@.service debian
-#cp $VIRCADIA/source/pkg-scripts/vircadia-ice-server.service debian
-#cp $VIRCADIA/source/pkg-scripts/vircadia-ice-server@.service debian
-cp $VIRCADIA/source/pkg-scripts/vircadia-server.target debian
-cp $VIRCADIA/source/pkg-scripts/vircadia-server@.target debian
+cp $VIRCADIA/source/pkg-scripts/overte-assignment-client.service debian
+cp $VIRCADIA/source/pkg-scripts/overte-assignment-client@.service debian
+cp $VIRCADIA/source/pkg-scripts/overte-domain-server.service debian
+cp $VIRCADIA/source/pkg-scripts/overte-domain-server@.service debian
+#cp $VIRCADIA/source/pkg-scripts/overte-ice-server.service debian
+#cp $VIRCADIA/source/pkg-scripts/overte-ice-server@.service debian
+cp $VIRCADIA/source/pkg-scripts/overte-server.target debian
+cp $VIRCADIA/source/pkg-scripts/overte-server@.target debian
 
 cp $VIRCADIA/source/pkg-scripts/server-control debian/control
 cp $VIRCADIA/source/pkg-scripts/server-prerm debian/prerm
@@ -63,33 +63,33 @@ cp $VIRCADIA/source/pkg-scripts/server-postinst debian/postinst
 cp $VIRCADIA/source/pkg-scripts/server-postrm debian/postrm
 cp $VIRCADIA/source/LICENSE debian/copyright
 
-echo /etc/opt/vircadia > debian/dirs
-echo /var/lib/vircadia >> debian/dirs
+echo /etc/opt/overte > debian/dirs
+echo /var/lib/overte >> debian/dirs
 
 echo README.md > debian/docs
 echo README_hifi.md >> debian/docs
 
-echo assignment-client opt/vircadia > debian/install
-echo domain-server opt/vircadia >> debian/install
-echo oven opt/vircadia >> debian/install
-#echo ice-server opt/vircadia >> debian/install
-echo new-server opt/vircadia >> debian/install
+echo assignment-client opt/overte > debian/install
+echo domain-server opt/overte >> debian/install
+echo oven opt/overte >> debian/install
+#echo ice-server opt/overte >> debian/install
+echo new-server opt/overte >> debian/install
 if [ "$VIRCADIA_USE_SYSTEM_QT" = "" ]; then
 	for so in *.so.*.*.*; do
-		echo $so opt/vircadia/lib >> debian/install
+		echo $so opt/overte/lib >> debian/install
 	done
 fi
 for so in *.so; do
-	echo $so opt/vircadia/lib >> debian/install
+	echo $so opt/overte/lib >> debian/install
 done
 #for service in *.service; do
-#	echo $service opt/vircadia/systemd >> debian/install
+#	echo $service opt/overte/systemd >> debian/install
 #done
 #for target in *.target; do
-#	echo $target opt/vircadia/systemd >> debian/install
+#	echo $target opt/overte/systemd >> debian/install
 #done
-find resources -type f -exec sh -c 'echo {} opt/vircadia/$(dirname "{}") >> debian/install' \;
-find plugins -type f -exec sh -c 'echo {} opt/vircadia/$(dirname "{}") >> debian/install' \;
+find resources -type f -exec sh -c 'echo {} opt/overte/$(dirname "{}") >> debian/install' \;
+find plugins -type f -exec sh -c 'echo {} opt/overte/$(dirname "{}") >> debian/install' \;
 
 if [ "$VIRCADIA_USE_SYSTEM_QT" = "" ]; then
 	SOFILES=`ls *.so *.so.*.*.* | grep -Po '^(.+\.so(\.\d+)?)' | sed 's/\./\\\./g' | paste -d'|' -s`

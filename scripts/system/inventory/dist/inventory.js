@@ -84,7 +84,7 @@ Tablet Vec3 Window */
         tablet.emitScriptEvent(JSON.stringify(dataToSend));
     }
 
-    var inventoryMessagesChannel = "com.vircadia.inventory";
+    var inventoryMessagesChannel = "com.overte.inventory";
 
     function onMessageReceived(channel, message, sender, localOnly) {
         if (channel === inventoryMessagesChannel) {

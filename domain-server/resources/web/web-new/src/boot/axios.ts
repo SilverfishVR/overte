@@ -25,7 +25,7 @@ axios.interceptors.request.use((config) => {
     // it to fail with an HTTP error code instead of succeeding and returning
     // the error in JSON only.
     if (config.url?.includes(METAVERSE_URL)) {
-        config.headers["x-vircadia-error-handle"] = "badrequest";
+        config.headers["x-overte-error-handle"] = "badrequest";
     }
     console.info("config", config);
     return config;
