@@ -1,4 +1,4 @@
-#VIRCADIA=~/Overte rpmbuild --target x86_64 -bb overte-server.spec
+#OVERTE=~/Overte rpmbuild --target x86_64 -bb overte-server.spec
 %define version %{lua:print(os.getenv("VERSION"))}
 %define depends %{lua:print(os.getenv("DEPENDS"))}
 
@@ -32,37 +32,37 @@ Overte allows creation and sharing of VR experiences.
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/opt/overte
-install -m 0755 -t $RPM_BUILD_ROOT/opt/overte $VIRCADIA/build/assignment-client/assignment-client
-install -m 0755 -t $RPM_BUILD_ROOT/opt/overte $VIRCADIA/build/domain-server/domain-server
-install -m 0755 -t $RPM_BUILD_ROOT/opt/overte $VIRCADIA/build/tools/oven/oven
-#install -m 0755 -t $RPM_BUILD_ROOT/opt/overte $VIRCADIA/build/ice-server/ice-server
+install -m 0755 -t $RPM_BUILD_ROOT/opt/overte $OVERTE/build/assignment-client/assignment-client
+install -m 0755 -t $RPM_BUILD_ROOT/opt/overte $OVERTE/build/domain-server/domain-server
+install -m 0755 -t $RPM_BUILD_ROOT/opt/overte $OVERTE/build/tools/oven/oven
+#install -m 0755 -t $RPM_BUILD_ROOT/opt/overte $OVERTE/build/ice-server/ice-server
 strip --strip-all $RPM_BUILD_ROOT/opt/overte/*
 chrpath -d $RPM_BUILD_ROOT/opt/overte/*
-install -m 0755 -t $RPM_BUILD_ROOT/opt/overte $VIRCADIA/source/pkg-scripts/new-server
+install -m 0755 -t $RPM_BUILD_ROOT/opt/overte $OVERTE/source/pkg-scripts/new-server
 install -d $RPM_BUILD_ROOT/opt/overte/lib
-install -m 0644 -t $RPM_BUILD_ROOT/opt/overte/lib $VIRCADIA/build/libraries/*/*.so
+install -m 0644 -t $RPM_BUILD_ROOT/opt/overte/lib $OVERTE/build/libraries/*/*.so
 strip --strip-all $RPM_BUILD_ROOT/opt/overte/lib/*
 chrpath -d $RPM_BUILD_ROOT/opt/overte/lib/*
-install -m 0644 -t $RPM_BUILD_ROOT/opt/overte/lib $VIRCADIA/qt5-install/lib/libQt5Network.so.*.*.*
-install -m 0644 -t $RPM_BUILD_ROOT/opt/overte/lib $VIRCADIA/qt5-install/lib/libQt5Core.so.*.*.*
-install -m 0644 -t $RPM_BUILD_ROOT/opt/overte/lib $VIRCADIA/qt5-install/lib/libQt5Widgets.so.*.*.*
-install -m 0644 -t $RPM_BUILD_ROOT/opt/overte/lib $VIRCADIA/qt5-install/lib/libQt5Gui.so.*.*.*
-install -m 0644 -t $RPM_BUILD_ROOT/opt/overte/lib $VIRCADIA/qt5-install/lib/libQt5Script.so.*.*.*
-install -m 0644 -t $RPM_BUILD_ROOT/opt/overte/lib $VIRCADIA/qt5-install/lib/libQt5WebSockets.so.*.*.*
-install -m 0644 -t $RPM_BUILD_ROOT/opt/overte/lib $VIRCADIA/qt5-install/lib/libQt5Qml.so.*.*.*
-install -m 0644 -t $RPM_BUILD_ROOT/opt/overte/lib $VIRCADIA/qt5-install/lib/libQt5Quick.so.*.*.*
-install -m 0644 -t $RPM_BUILD_ROOT/opt/overte/lib $VIRCADIA/qt5-install/lib/libQt5ScriptTools.so.*.*.*
+install -m 0644 -t $RPM_BUILD_ROOT/opt/overte/lib $OVERTE/qt5-install/lib/libQt5Network.so.*.*.*
+install -m 0644 -t $RPM_BUILD_ROOT/opt/overte/lib $OVERTE/qt5-install/lib/libQt5Core.so.*.*.*
+install -m 0644 -t $RPM_BUILD_ROOT/opt/overte/lib $OVERTE/qt5-install/lib/libQt5Widgets.so.*.*.*
+install -m 0644 -t $RPM_BUILD_ROOT/opt/overte/lib $OVERTE/qt5-install/lib/libQt5Gui.so.*.*.*
+install -m 0644 -t $RPM_BUILD_ROOT/opt/overte/lib $OVERTE/qt5-install/lib/libQt5Script.so.*.*.*
+install -m 0644 -t $RPM_BUILD_ROOT/opt/overte/lib $OVERTE/qt5-install/lib/libQt5WebSockets.so.*.*.*
+install -m 0644 -t $RPM_BUILD_ROOT/opt/overte/lib $OVERTE/qt5-install/lib/libQt5Qml.so.*.*.*
+install -m 0644 -t $RPM_BUILD_ROOT/opt/overte/lib $OVERTE/qt5-install/lib/libQt5Quick.so.*.*.*
+install -m 0644 -t $RPM_BUILD_ROOT/opt/overte/lib $OVERTE/qt5-install/lib/libQt5ScriptTools.so.*.*.*
 install -d $RPM_BUILD_ROOT/usr/lib/systemd/system
-install -m 0644 -t $RPM_BUILD_ROOT/usr/lib/systemd/system $VIRCADIA/source/pkg-scripts/overte-assignment-client.service
-install -m 0644 -t $RPM_BUILD_ROOT/usr/lib/systemd/system $VIRCADIA/source/pkg-scripts/overte-assignment-client@.service
-install -m 0644 -t $RPM_BUILD_ROOT/usr/lib/systemd/system $VIRCADIA/source/pkg-scripts/overte-domain-server.service
-install -m 0644 -t $RPM_BUILD_ROOT/usr/lib/systemd/system $VIRCADIA/source/pkg-scripts/overte-domain-server@.service
-#install -m 0644 -t $RPM_BUILD_ROOT/usr/lib/systemd/system $VIRCADIA/source/pkg-scripts/overte-ice-server.service
-#install -m 0644 -t $RPM_BUILD_ROOT/usr/lib/systemd/system $VIRCADIA/source/pkg-scripts/overte-ice-server@.service
-install -m 0644 -t $RPM_BUILD_ROOT/usr/lib/systemd/system $VIRCADIA/source/pkg-scripts/overte-server.target
-install -m 0644 -t $RPM_BUILD_ROOT/usr/lib/systemd/system $VIRCADIA/source/pkg-scripts/overte-server@.target
-cp -a $VIRCADIA/source/domain-server/resources $RPM_BUILD_ROOT/opt/overte
-cp -a $VIRCADIA/build/assignment-client/plugins $RPM_BUILD_ROOT/opt/overte
+install -m 0644 -t $RPM_BUILD_ROOT/usr/lib/systemd/system $OVERTE/source/pkg-scripts/overte-assignment-client.service
+install -m 0644 -t $RPM_BUILD_ROOT/usr/lib/systemd/system $OVERTE/source/pkg-scripts/overte-assignment-client@.service
+install -m 0644 -t $RPM_BUILD_ROOT/usr/lib/systemd/system $OVERTE/source/pkg-scripts/overte-domain-server.service
+install -m 0644 -t $RPM_BUILD_ROOT/usr/lib/systemd/system $OVERTE/source/pkg-scripts/overte-domain-server@.service
+#install -m 0644 -t $RPM_BUILD_ROOT/usr/lib/systemd/system $OVERTE/source/pkg-scripts/overte-ice-server.service
+#install -m 0644 -t $RPM_BUILD_ROOT/usr/lib/systemd/system $OVERTE/source/pkg-scripts/overte-ice-server@.service
+install -m 0644 -t $RPM_BUILD_ROOT/usr/lib/systemd/system $OVERTE/source/pkg-scripts/overte-server.target
+install -m 0644 -t $RPM_BUILD_ROOT/usr/lib/systemd/system $OVERTE/source/pkg-scripts/overte-server@.target
+cp -a $OVERTE/source/domain-server/resources $RPM_BUILD_ROOT/opt/overte
+cp -a $OVERTE/build/assignment-client/plugins $RPM_BUILD_ROOT/opt/overte
 chrpath -d $RPM_BUILD_ROOT/opt/overte/plugins/*.so
 chrpath -d $RPM_BUILD_ROOT/opt/overte/plugins/*/*.so
 strip --strip-all $RPM_BUILD_ROOT/opt/overte/plugins/*.so
@@ -71,7 +71,7 @@ find $RPM_BUILD_ROOT/opt/overte/resources -name ".gitignore" -delete
 
 
 %files
-%license $VIRCADIA/source/LICENSE
+%license $OVERTE/source/LICENSE
 /opt/overte
 /usr/lib/systemd/system
 
@@ -121,12 +121,12 @@ if [ ! -d "/var/lib/overte/default" ]; then
 		find /var/lib/overte -maxdepth 3 -path "*\.local/share" -execdir sh -c 'cd share; ln -s ../.. "Overte - dev"' ';'
 		find /var/lib/overte -maxdepth 3 -path "*\.local/share" -execdir sh -c 'cd share; ln -s ../.. Overte' ';'
 
-		VIRCADIA_ACTIVE=`echo -n $ATHENA_ACTIVE | sed 's/athena/overte/g'`
-		VIRCADIA_ENABLED=`echo -n $ATHENA_ENABLED | sed 's/athena/overte/g'`
+		OVERTE_ACTIVE=`echo -n $ATHENA_ACTIVE | sed 's/athena/overte/g'`
+		OVERTE_ENABLED=`echo -n $ATHENA_ENABLED | sed 's/athena/overte/g'`
 
 		echo -n $ATHENA_ENABLED | xargs -d'|' systemctl disable
-		echo -n $VIRCADIA_ENABLED | xargs -d'|' systemctl enable
-		echo -n $VIRCADIA_ACTIVE | xargs -d'|' systemctl start
+		echo -n $OVERTE_ENABLED | xargs -d'|' systemctl enable
+		echo -n $OVERTE_ACTIVE | xargs -d'|' systemctl start
 	else
 		/opt/overte/new-server default 40100
 		systemctl enable overte-server@default.target

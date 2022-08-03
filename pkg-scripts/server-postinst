@@ -46,12 +46,12 @@ case "$1" in
 			find /var/lib/overte -maxdepth 3 -path "*\.local/share" -execdir sh -c 'cd share; ln -s ../.. "Overte - dev"' ';'
 			find /var/lib/overte -maxdepth 3 -path "*\.local/share" -execdir sh -c 'cd share; ln -s ../.. Overte' ';'
 
-			VIRCADIA_ACTIVE=`echo -n $ATHENA_ACTIVE | sed 's/athena/overte/g'`
-			VIRCADIA_ENABLED=`echo -n $ATHENA_ENABLED | sed 's/athena/overte/g'`
+			OVERTE_ACTIVE=`echo -n $ATHENA_ACTIVE | sed 's/athena/overte/g'`
+			OVERTE_ENABLED=`echo -n $ATHENA_ENABLED | sed 's/athena/overte/g'`
 
 			echo -n $ATHENA_ENABLED | xargs -d'|' systemctl disable
-			echo -n $VIRCADIA_ENABLED | xargs -d'|' systemctl enable
-			echo -n $VIRCADIA_ACTIVE | xargs -d'|' systemctl start
+			echo -n $OVERTE_ENABLED | xargs -d'|' systemctl enable
+			echo -n $OVERTE_ACTIVE | xargs -d'|' systemctl start
 		else
 			/opt/overte/new-server default 40100
 			systemctl enable overte-server@default.target

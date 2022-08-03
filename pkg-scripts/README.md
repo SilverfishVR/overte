@@ -12,7 +12,7 @@ base folder/
 ```
 
 These scripts assume that the current directory is the pkg-scripts folder inside of the source directory
-and that the base folder can be reached by going to `../..`. This may not work if pkg-scripts is a symlink; adding an VIRCADIA=~/Overte to the beginning of the commandline will override where it looks for the base folder.
+and that the base folder can be reached by going to `../..`. This may not work if pkg-scripts is a symlink; adding an OVERTE=~/Overte to the beginning of the commandline will override where it looks for the base folder.
 
 ## Ubuntu
 ```
